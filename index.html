@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Validations</title>
+	<script type="text/javascript" src='angular.min.js'></script>
+	<script type="text/javascript" src='app.js'></script>
+</head>
+<body ng-app='UserValidationDemo'>
+	<div ng-controller='userRegistrationController as reg'>
+		<div style=' border: 2px; border-style: double; border-color: black; width: 25%;'>
+			<form name='userReg' style="padding-left: 20px; padding-top:10px;padding-bottom: 10px" novalidate>
+				<span>Username: </span><input type="text" name="username" ng-model='reg.user.username' 
+				placeholder="Name" 
+				required
+				minlenght='4'
+				ng-maxlength='10'><br>
+				<span style="padding-right: 35px;">Email: </span><input type="email" name="email" placeholder="Email" ng-model='reg.user.email'><br>
+				<span style="padding-right: 3px;">Phone No: </span><input type="phone" name="phonenum" placeholder="Mobile Number" ng-model='reg.user.phonenum'><br>
+				<button ng-click='reg.onSubmit();' > Submit</button>
+			</form>
+			<span ng-if='userReg.username.$error.required && userReg.username.$touched'> user must enter name</span> 
+		</div>
+		<br>
+		<p style='border: 2px; border-style: dotted; border-color: black; width: 25%;' ng-if='(userReg.username.$error.required && reg.completed)'>
+			{{reg.user.username}}<br>
+			{{reg.user.email}}<br>
+			{{reg.user.phonenum}}
+		</p>
+	</div>
+</body>
+</html>
